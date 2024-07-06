@@ -15,20 +15,16 @@
   }
 </script> -->
 
-<!-- 有插件後，可以直接把name改在這  -->
-<script lang="ts" setup name="Person">
-	import { ref } from 'vue';
-
-	// 需要響應式的數據，引入 ref 後包起來。
-	let name = ref('張三');
-	// 要修改 ref 後要加.value
+<!-- 有插件後，可以直接把name改在這 -->
+<script lang="ts" setup name="Person234">
+	let name = '張三';
 	const changeName = () => {
-		name.value = '老五';
+		name = '老五';
 	};
 
-	let age = ref(18);
+	let age = 18;
 	const changeAge = () => {
-		age.value += 1;
+		age += 1;
 	};
 
 	let tel = '123123';
