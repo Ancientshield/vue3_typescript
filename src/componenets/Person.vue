@@ -1,37 +1,38 @@
 <template>
 	<div class="person">
 		<h2>汽車資訊：一輛{{ car.brand }}車，價值{{ car.price }}萬</h2>
+		<button @click="changeBrand">修改品牌</button>
 		<button @click="changePrice">修改價格</button>
-		<br />
-		<h2>遊戲列表：</h2>
-		<ul>
-			<!-- v-bind 可以不用寫 -->
-			<li v-for="g in games" v-bind:key="g.id">{{ g.name }}</li>
-		</ul>
-		<button @click="changeFirstGame">修改第一個遊戲的名字</button>
+		<button @click="changeCar">修改車輛</button>
+		<hr />
+		<h2>當前求和為：{{ sum }}</h2>
+		<button @click="changeSum">點我+1</button>
 	</div>
 </template>
 
 <script lang="ts" setup name="Person">
-	import { ref } from 'vue';
+	import { ref, reactive } from 'vue';
 
 	// 物件、陣列 類型用 reactive 會變成 Proxy
-	let car = ref({ brand: '賓士', price: 100 });
+	let car = reactive({ brand: '賓士', price: 100 });
 	const changePrice = () => {
-		car.value.price += 1;
+		car.price += 1;
+	};
+	const changeBrand = () => {
+		car.brand = '法拉利';
 	};
 
-	// 物件、陣列 類型用 reactive 會變成 Proxy
-	let games = ref([
-		{ id: '001', name: '王者榮耀' },
-		{ id: '002', name: '原神' },
-		{ id: '003', name: '三國志' },
-	]);
-	// 陣列要在前面 .value
-	const changeFirstGame = () => {
-		games.value[0].name = '流星蝴蝶劍';
+	const changeCar = () => {
+		// car = { brand: '特斯拉', price: 200 } // 錯誤寫法
+		// car = reactive({ brand: '特斯拉', price: 200 }) // 錯誤寫法
+		// 修改 reactive 的整個物件，必須要用 Object.assign()，否則會失去響應性，無法修改
+		Object.assign(car, { brand: '特斯拉', price: 200 });
 	};
-	// 結論：ref 遇到物件or陣列，底層還是用 reactive
+
+	let sum = ref(0);
+	const changeSum = () => {
+		sum.value += 1;
+	};
 </script>
 
 <style scoped>
@@ -43,6 +44,7 @@
 	}
 	button {
 		margin: 0 5px;
+		font-size: 20px;
 	}
 	li {
 		font-size: 20px;
