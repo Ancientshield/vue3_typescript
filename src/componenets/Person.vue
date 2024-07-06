@@ -1,39 +1,49 @@
 <template>
 	<div class="person">
-		<h2>姓名：{{ name }}</h2>
-		<h2>年齡：{{ age }}</h2>
-		<button @click="changeName">修改名字</button>
-		<button @click="changeAge">修改年齡</button>
-		<button @click="showTel">查看聯繫方式</button>
+		<h2>汽車資訊：一輛{{ car.brand }}車，價值{{ car.price }}萬</h2>
+		<button @click="changePrice">修改價格</button>
+		<br />
+		<h2>遊戲列表：</h2>
+		<ul>
+			<!-- v-bind 可以不用寫 -->
+			<li v-for="g in games" v-bind:key="g.id">{{ g.name }}</li>
+		</ul>
+		<button @click="changeFirstGame">修改第一個遊戲的名字</button>
+		<hr />
+		<h2>測試：{{ obj.a.b.c }}</h2>
+		<button @click="changeObj">修改</button>
 	</div>
 </template>
 
-<!-- 寫兩個 script 太麻煩了，安裝插件 npm i vite-plugin-vue-setup-extend -->
-<!-- <script lnag="ts">
-  export default{
-    name: 'Person',
-  }
-</script> -->
-
-<!-- 有插件後，可以直接把name改在這  -->
 <script lang="ts" setup name="Person">
-	import { ref } from 'vue';
+	import { reactive } from 'vue';
 
-	// 需要響應式的數據，引入 ref 後包起來。
-	let name = ref('張三');
-	// 要修改 ref 後要加.value
-	const changeName = () => {
-		name.value = '老五';
+	// 物件、陣列 類型用 reactive 會變成 Proxy
+	let car = reactive({ brand: '賓士', price: 100 });
+	const changePrice = () => {
+		car.price += 1;
 	};
 
-	let age = ref(18);
-	const changeAge = () => {
-		age.value += 1;
+	// 物件、陣列 類型用 reactive 會變成 Proxy
+	let games = reactive([
+		{ id: '001', name: '王者榮耀' },
+		{ id: '002', name: '原神' },
+		{ id: '003', name: '三國志' },
+	]);
+	const changeFirstGame = () => {
+		games[0].name = '流星蝴蝶劍';
 	};
 
-	let tel = '123123';
-	const showTel = () => {
-		alert(tel);
+	// reactive 深層次修改
+	let obj = reactive({
+		a: {
+			b: {
+				c: 666,
+			},
+		},
+	});
+	const changeObj = () => {
+		obj.a.b.c = 999;
 	};
 </script>
 
@@ -46,5 +56,8 @@
 	}
 	button {
 		margin: 0 5px;
+	}
+	li {
+		font-size: 20px;
 	}
 </style>
