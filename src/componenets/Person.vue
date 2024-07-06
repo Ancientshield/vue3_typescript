@@ -8,27 +8,28 @@
 	</div>
 </template>
 
-<script lang="ts">
-	export default {
-		name: '',
-		data() {
-			return {
-				name: '張三',
-				age: 18,
-				tel: '123123',
-			};
-		},
-		methods: {
-			changeName() {
-				this.name = '老五';
-			},
-			changeAge() {
-				this.age += 1;
-			},
-			showTel() {
-				alert(this.tel);
-			},
-		},
+<!-- 寫兩個 script 太麻煩了，安裝插件 npm i vite-plugin-vue-setup-extend -->
+<!-- <script lnag="ts">
+  export default{
+    name: 'Person',
+  }
+</script> -->
+
+<!-- 有插件後，可以直接把name改在這 -->
+<script lang="ts" setup name="Person234">
+	let name = '張三';
+	const changeName = () => {
+		name = '老五';
+	};
+
+	let age = 18;
+	const changeAge = () => {
+		age += 1;
+	};
+
+	let tel = '123123';
+	const showTel = () => {
+		alert(tel);
 	};
 </script>
 
