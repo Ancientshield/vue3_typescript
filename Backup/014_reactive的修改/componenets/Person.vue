@@ -23,6 +23,7 @@
 	};
 
 	const changeCar = () => {
+		// reactive 定義的整體物件不可以直接修改
 		// car = { brand: '特斯拉', price: 200 } // 錯誤寫法
 		// car = reactive({ brand: '特斯拉', price: 200 }) // 錯誤寫法
 		// 修改 reactive 的整個物件，必須要用 Object.assign()，否則會失去響應性，無法修改
