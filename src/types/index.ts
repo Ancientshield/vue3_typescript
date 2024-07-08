@@ -7,3 +7,6 @@ export interface PersonInter {
 
 // 定義一個類型
 export type Persons = Array<PersonInter>;
+
+// 也可
+// export type Persons = PersonInter[];

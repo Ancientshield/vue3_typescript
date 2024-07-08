@@ -4,7 +4,7 @@
 
 <script lang="ts" setup name="Person">
 	// PersonInter 不是值，是一種定義，所以前面要加 type
-	import { type PersonInter, type Persons } from '@/types';
+	import { type PersonInter, type Persons } from '../types';
 
 	// person 必須符合 PersonInter 規範
 	let person: PersonInter = {
