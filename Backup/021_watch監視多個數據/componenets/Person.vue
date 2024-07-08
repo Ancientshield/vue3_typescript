@@ -1,6 +1,6 @@
 <template>
 	<div class="person">
-		<h1>情況五：監視上述多個數據</h1>
+		<h1>情況四：監視 ref 或 reactive 定義的物件類型內的『某個』屬性</h1>
 		<h2>姓名：{{ person.name }}</h2>
 		<h2>年齡：{{ person.age }}</h2>
 		<h2>汽車：{{ person.car.c1 }}、{{ person.car.c2 }}</h2>
@@ -47,10 +47,24 @@
 	// 3. object
 	// 4. or an array of these types.
 
-	// 監視多個數據，用陣列
-	watch([() => person.name, () => person.car.c1], () => {
-		console.log(`${person.name}改變了，或 ${person.car.c1}改變了`);
-	});
+	// 寫成 1. getter function // 能返回一個值的函數
+	// 只監視 person.name // 若該屬性不是物件類型，需要寫成 getter function
+	watch(
+		() => person.name,
+		(newVal, oldVal) => {
+			console.log('person.name變化了', newVal, oldVal);
+		}
+	);
+	// 若該屬性是物件類型，可以直接寫 person.car，但更推薦寫 getter function + { deep: true }
+	// 因為物件類型是位址值，所以必須開深度
+	watch(
+		() => person.car,
+		(newVal, oldVal) => {
+			console.log('person.car變化了', newVal, oldVal);
+		},
+		{ deep: true }
+	);
+	// 結論：監視的是物件的屬性，最好還是寫函數，若要監視細節，開深度。
 </script>
 
 <style scoped>
