@@ -5,6 +5,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '@/views/Home.vue';
 import About from '@/views/About.vue';
 import News from '@/views/News.vue';
+import Detail from '@/views/Detail.vue';
 
 // 創建路由器
 const router = createRouter({
@@ -12,16 +13,26 @@ const router = createRouter({
 	routes: [
 		// 每一個路由的工作規則
 		{
+			name: '首頁',
 			path: '/home',
 			component: Home,
 		},
 		{
+			name: '關於',
 			path: '/about',
 			component: About,
 		},
 		{
+			name: '新聞',
 			path: '/news',
 			component: News,
+			children: [
+				{
+					// 子連結不用寫斜槓
+					path: 'detail',
+					component: Detail,
+				},
+			],
 		},
 	],
 });

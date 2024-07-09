@@ -1,12 +1,10 @@
 <template>
 	<div class="app">
-		<!-- 手寫的就是一般元件 -->
-		<Header />
 		<h2 class="title">Vue路由測試</h2>
 		<!-- 導航區靠路由 rander 出來的就是路由元件，放在views資料夾內 -->
 		<div class="navigate">
 			<RouterLink to="/home" active-class="active">首頁</RouterLink>
-			<RouterLink to="/news" active-class="active">新聞</RouterLink>
+			<RouterLink :to="{ name: '新聞' }" active-class="active">新聞</RouterLink>
 			<RouterLink :to="{ path: '/about' }" active-class="active"
 				>關於</RouterLink
 			>
