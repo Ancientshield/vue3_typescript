@@ -1,10 +1,13 @@
-// 引入 createApp 創建應用
 import { createApp } from 'vue';
-// 引入 App.vue 根元件
 import App from './App.vue';
 
-// 創建一個 app 應用
+// 引入 pinia
+import { createPinia } from 'pinia';
+
 const app = createApp(App);
 
-// 使用路由器並掛載應用到app容器中。
-app.mount('#app');
+// 創建 pinia
+const pinia = createPinia();
+
+// 使用 pinia
+app.use(pinia).mount('#app');
