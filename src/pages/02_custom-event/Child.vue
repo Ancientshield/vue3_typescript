@@ -1,21 +1,22 @@
 <template>
-  <div class="child">
-    <h3>子组件</h3>
+	<div class="child">
+		<h3>子元件</h3>
 		<h4>玩具：{{ toy }}</h4>
-		<button @click="emit('send-toy',toy)">测试</button>
-  </div>
+		<!-- 第一個參數調用函數，第二個參數傳遞值 -->
+		<button @click="emit('send-toy', toy)">測試</button>
+	</div>
 </template>
 
 <script setup lang="ts" name="Child">
-	import { ref } from "vue";
-	// 数据
-	let toy = ref('奥特曼')
-	// 声明事件
-	const emit =  defineEmits(['send-toy'])
+	import { ref } from 'vue';
+
+	let toy = ref('法拉利');
+	// 聲明綁定在 <Child /> 上的 send-toy 事件
+	const emit = defineEmits(['send-toy']);
 </script>
 
 <style scoped>
-	.child{
+	.child {
 		margin-top: 10px;
 		background-color: rgb(76, 209, 76);
 		padding: 10px;
