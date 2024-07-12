@@ -22,7 +22,7 @@
 	// defineProps(['modelValue']);
 	defineProps(['modelValue', 'ming', 'mima']);
 	// const emit = defineEmits(['update:modelValue']);
-	const emit = defineEmits(['update:modelValue', 'update:ming', 'update:mima']);
+	const emit = defineEmits(['update:ming', 'update:mima']);
 </script>
 
 <style scoped>
