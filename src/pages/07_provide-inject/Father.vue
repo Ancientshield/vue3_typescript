@@ -1,35 +1,37 @@
 <template>
-  <div class="father">
-    <h3>父组件</h3>
-    <h4>银子：{{ money }}万元</h4>
-    <h4>车子：一辆{{car.brand}}车，价值{{car.price}}万元</h4>
-    <Child/>
-  </div>
+	<div class="father">
+		<h3>父元件</h3>
+		<h4>銀子：{{ money }}萬元</h4>
+		<h4>車子：{{ car.brand }}，價值{{ car.price }}萬元</h4>
+		<Child />
+	</div>
 </template>
 
 <script setup lang="ts" name="Father">
-  import Child from './Child.vue'
-  import {ref,reactive,provide} from 'vue'
+	import Child from './Child.vue';
+	// 要引入 provide
+	import { ref, reactive, provide } from 'vue';
 
-  let money = ref(100)
-  let car = reactive({
-    brand:'奔驰',
-    price:100
-  })
-  function updateMoney(value:number){
-    money.value -= value
-  }
+	let money = ref(100);
+	let car = reactive({
+		brand: '特斯拉',
+		price: 100,
+	});
 
-  // 向后代提供数据
-  provide('moneyContext',{money,updateMoney})
-  provide('car',car)
+	const updateMoney = (value: number) => {
+		money.value -= value;
+	};
 
+	// provide 向後代提供 function、數據
+	// provide 第二個參數不能寫 money.value，會失去響應性
+	provide('moneyContext', { money, updateMoney });
+	provide('carName', car);
 </script>
 
 <style scoped>
-  .father {
-    background-color: rgb(165, 164, 164);
-    padding: 20px;
-    border-radius: 10px;
-  }
+	.father {
+		background-color: rgb(165, 164, 164);
+		padding: 20px;
+		border-radius: 10px;
+	}
 </style>
