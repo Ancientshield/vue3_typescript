@@ -3,12 +3,14 @@
 		<h3>父元件</h3>
 		<div class="content">
 			<Game>
+				<!-- params = { youxi: games, x: '哈哈', y: '你好'} -->
 				<template v-slot="params">
 					<ul>
 						<li v-for="y in params.youxi" :key="y.id">
 							{{ y.name }}
 						</li>
 					</ul>
+					<div>{{ params.x }}：{{ params.y }}</div>
 				</template>
 			</Game>
 
@@ -23,7 +25,8 @@
 			</Game>
 
 			<Game>
-				<template #default="{ youxi }">
+				<!-- default 如果改了，子元件的作用域插槽就要 name 屬性 -->
+				<template v-slot:default="{ youxi }">
 					<h3 v-for="g in youxi" :key="g.id">{{ g.name }}</h3>
 				</template>
 			</Game>
