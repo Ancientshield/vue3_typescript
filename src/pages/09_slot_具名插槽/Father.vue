@@ -3,13 +3,13 @@
 		<h3>父元件</h3>
 		<div class="content">
 			<Category>
+				<template v-slot:s1>
+					<h2>熱門遊戲列表</h2>
+				</template>
 				<template v-slot:s2>
 					<ul>
 						<li v-for="g in games" :key="g.id">{{ g.name }}</li>
 					</ul>
-				</template>
-				<template v-slot:s1>
-					<h2>熱門遊戲列表</h2>
 				</template>
 			</Category>
 
@@ -17,17 +17,19 @@
 				<template v-slot:s2>
 					<img :src="imgUrl" alt="" />
 				</template>
+				<!-- 模板排序是由插槽名決定，寫在下面也會呈現在上面 -->
 				<template v-slot:s1>
 					<h2>今日美食城市</h2>
 				</template>
 			</Category>
 
 			<Category>
-				<template #s2>
-					<video video :src="videoUrl" controls></video>
-				</template>
+				<!-- #號是插槽的簡寫 -->
 				<template #s1>
 					<h2>今日影視推薦</h2>
+				</template>
+				<template #s2>
+					<video video :src="videoUrl" controls></video>
 				</template>
 			</Category>
 		</div>
