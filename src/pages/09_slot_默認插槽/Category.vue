@@ -1,11 +1,13 @@
 <template>
 	<div class="category">
-		<slot name="s1">默認內容1</slot>
-		<slot name="s2">默認内容2</slot>
+		<h2>{{ title }}</h2>
+		<slot>默認内容</slot>
 	</div>
 </template>
 
-<script setup lang="ts" name="Category"></script>
+<script setup lang="ts" name="Category">
+	defineProps(['title']);
+</script>
 
 <style scoped>
 	.category {
@@ -15,5 +17,11 @@
 		padding: 10px;
 		width: 200px;
 		height: 300px;
+	}
+	h2 {
+		background-color: orange;
+		text-align: center;
+		font-size: 20px;
+		font-weight: 800;
 	}
 </style>

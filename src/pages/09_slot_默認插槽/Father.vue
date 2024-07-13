@@ -2,33 +2,16 @@
 	<div class="father">
 		<h3>父元件</h3>
 		<div class="content">
-			<Category>
-				<template v-slot:s2>
-					<ul>
-						<li v-for="g in games" :key="g.id">{{ g.name }}</li>
-					</ul>
-				</template>
-				<template v-slot:s1>
-					<h2>熱門遊戲列表</h2>
-				</template>
+			<Category title="熱門遊戲列表">
+				<ul>
+					<li v-for="g in games" :key="g.id">{{ g.name }}</li>
+				</ul>
 			</Category>
-
-			<Category>
-				<template v-slot:s2>
-					<img :src="imgUrl" alt="" />
-				</template>
-				<template v-slot:s1>
-					<h2>今日美食城市</h2>
-				</template>
+			<Category title="今日美食城市">
+				<img :src="imgUrl" alt="" />
 			</Category>
-
-			<Category>
-				<template #s2>
-					<video video :src="videoUrl" controls></video>
-				</template>
-				<template #s1>
-					<h2>今日影視推薦</h2>
-				</template>
+			<Category title="今日影視推薦">
+				<video :src="videoUrl" controls></video>
 			</Category>
 		</div>
 	</div>
@@ -61,11 +44,5 @@
 	img,
 	video {
 		width: 100%;
-	}
-	h2 {
-		background-color: orange;
-		text-align: center;
-		font-size: 20px;
-		font-weight: 800;
 	}
 </style>
